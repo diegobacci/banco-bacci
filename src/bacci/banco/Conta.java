@@ -8,19 +8,19 @@ public class Conta {
 
     private int numeroConta;
     private float saldoConta;
-    private int tipoConta;
+    private int tipoConta; // 1 = corrente e 2 = poupanca
     private boolean contaAberta;
     private double deposito;
     private double sacar;
     private float mensalidadeConta;
     private char statusConta;
 
-    public Conta(boolean statusConta, float saldoConta) {
+    public Conta(boolean statusConta, float saldoConta) { // sempre que conta ser criada, tera esses valores de atributo
         this.setContaAberta(false);
         this.setSaldoConta(0);
     }
 
-    public void abrirConta() {
+    public void abrirConta(int tipoConta, int numeroConta) {
         // devemos acrescentar valor bonus inicial de criacao de conta;
         this.setContaAberta(true);
     }
@@ -35,19 +35,20 @@ public class Conta {
             // imprimir mensagem dizendo se usuario gostaria de sacar dinheiro ou cancelar operacao
             // se sim, zerar saldo
             // ******* Depois de implementacao, colocar como opcao mandar saldo para outra conta existente
-
         }
         else {
             this.setContaAberta(false);
         }
     }
 
-    public double depositar() {
-        if (contaAberta == true) {
-            // Deposito pode acontecer
+    public void depositar(float deposito) throws Exception {
+        if (/*objeto-da-conta-destino.*/isContaAberta() == false) {
+            System.err.println("É necessario criar uma conta");
         }
-
-        return this.getDeposito();
+        else {
+            this.saldoConta -= deposito;
+        //  /*objeto-conta-destino.*/saldoConta += deposito;
+        }
     }
 
     public double sacar() {
@@ -70,7 +71,7 @@ public class Conta {
     }
 
     public int getNumeroConta() {
-        return numeroConta;
+        return this.numeroConta;
     }
 
     public void setNumeroConta(int numeroConta) {
@@ -86,16 +87,25 @@ public class Conta {
     }
 
     public int getTipoConta() {
-        System.out.println("Qual seu tipo de conta? ");
+        /*System.out.println("Qual seu tipo de conta? ");
         System.out.println("\n[ 1 ] - Conta Corrente");
         System.out.println("[ 2 ] - Conta Poupança");
-        System.out.println("\nResposta: " + this.tipoConta); // Receber o valor da resposta
-        return tipoConta;
+        System.out.println("\nResposta: " + this.tipoConta); // Receber o valor da resposta */
+        return this.tipoConta;
     }
 
-    public void setTipoConta(int tipoConta) { this.tipoConta = tipoConta; }
+    public void setTipoConta(int tipoConta) {
+        this.tipoConta = tipoConta;
+    }
 
-    public boolean isContaAberta() { return contaAberta; }
+    public boolean isContaAberta() {
+        if (isContaAberta() == true) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
     /**
      * @param contaAberta the contaAberta to set
