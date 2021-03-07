@@ -156,7 +156,6 @@ public class Conta {
         }
         else {
             System.out.println("Status: Aberta");
-            System.out.printf("Dono: " + this.);
             System.out.printf("Saldo: " + this.getSaldoConta());
         }
     }
