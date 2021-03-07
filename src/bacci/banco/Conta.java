@@ -20,39 +20,70 @@ public class Conta {
         this.setSaldoConta(0);
     }
 
-    public void abrirConta(int tipoConta, int numeroConta) {
+    public void abrirConta(int tipoConta) { // 1 = corrente e 2 = poupanca
         // devemos acrescentar valor bonus inicial de criacao de conta;
+        this.setTipoConta(tipoConta);
         this.setContaAberta(true);
+
+        if (getTipoConta() == 1) {
+            this.saldoConta += 50; // this.setSaldoConta(50)
+        }
+        else if (getTipoConta() == 2) {
+            this.saldoConta += 150; // this.setSaldoConta(150)
+        }
     }
 
-    public void fecharConta() {
+    public void fecharConta(float saldoConta) throws Exception {
         if (this.getSaldoConta() < 0) {
-            System.out.println();
-            // Cancelar operacao, negando o fechamento de conta, por saldo negativo
+            System.err.println("Não é possivel fechar conta com saldo negativo...");
+
+            // menu em interface perguntando:
+            // System.out.println("Entre com a opção desejada: ");
+            // System.out.println("\n[ 1 ] - Pagar todas suas dívidas (" + this.getSaldoConta() + ")");
+            // System.out.println("\n[ 2 ] - Cancelar e sair
+            throw new Exception ("Saldo negativo");
         }
         else if (this.getSaldoConta() > 0) {
             System.out.println("É necessário sacar os " + this.getSaldoConta() + " restantes para concluir.");
+
+            throw new Exception ("Saldo negativo");
             // imprimir mensagem dizendo se usuario gostaria de sacar dinheiro ou cancelar operacao
             // se sim, zerar saldo
             // ******* Depois de implementacao, colocar como opcao mandar saldo para outra conta existente
         }
         else {
+            System.out.println("Conta excluída com sucesso!");
             this.setContaAberta(false);
         }
     }
 
     public void depositar(float deposito) throws Exception {
-        if (/*objeto-da-conta-destino.*/isContaAberta() == false) {
-            System.err.println("É necessario criar uma conta");
+        if (this.isContaAberta() == false) {
+            System.err.println("É necessario criar uma conta para depositar.");
+            throw new Exception ("Conta Inexistente");
         }
         else {
-            this.saldoConta -= deposito;
-        //  /*objeto-conta-destino.*/saldoConta += deposito;
+            setSaldoConta(getSaldoConta() + deposito);
         }
     }
 
-    public double sacar() {
-        if (contaAberta == true) {
+    public double sacar() throws Exception {
+
+        // Interface em que pergunta: Deseje a quantidade a ser sacada de sua conta:
+        // [ 1 ] - Personalizado
+        // [ 2 ] - Saldo Total
+        // [ 3 ] - Cancelar
+
+        if (this.isContaAberta() == false) {
+            System.err.println("Não foi encontrado nenhuma conta registrada.\nNecessário abrir uma nova conta!");
+            throw new Exception ("Não ha conta aberta");
+
+            // chama um menu menu perguntando se deseja criar conta nova
+            // system("pause")
+            // interface
+            // this.sacar();
+        }
+        else {
             if (this.getSaldoConta() >= this.getSacar()) {
                 // pode acontecer saque
             }
@@ -118,7 +149,7 @@ public class Conta {
      * @return the deposito
      */
     public double getDeposito() {
-        return deposito;
+        return this.deposito;
     }
 
     /**
@@ -132,7 +163,7 @@ public class Conta {
      * @return the sacar
      */
     public double getSacar() {
-        return sacar;
+        return this.sacar;
     }
 
     /**
@@ -146,13 +177,13 @@ public class Conta {
      * @return the mensalidadeConta
      */
     public double getMensalidadeConta() {
-        return mensalidadeConta;
+        return this.mensalidadeConta;
     }
 
     /**
      * @param mensalidadeConta the mensalidadeConta to set
      */
-    public void setMensalidadeConta(double mensalidadeConta) {
+    public void setMensalidadeConta(float mensalidadeConta) {
         this.mensalidadeConta -= mensalidadeConta;
     }
 
@@ -160,6 +191,6 @@ public class Conta {
      * @return the statusConta
      */
     public char getStatusConta() {
-        return statusConta;
+        return this.statusConta;
     }
 }
