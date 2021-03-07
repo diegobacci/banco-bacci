@@ -65,16 +65,24 @@ public class Conta {
         }
     }
 
+    // NECESSARIO COLOCAR TRY/CATCH
+
     public void depositar(float deposito) throws Exception {
-        if (this.isContaAberta() == false) {
-            System.err.println("Impossivel depositar em conta inexistente ou fechada.");
-            throw new Exception ("Conta Inexistente");
+        try {
+            if (this.isContaAberta() == false) {
+                System.err.println("Impossivel depositar em conta inexistente ou fechada.");
+                throw new Exception("Conta Inexistente");
+            } else {
+                setSaldoConta(getSaldoConta() + deposito); //this.setSaldoConta(getSaldoConta() + deposito);
+                System.out.println("Deposito realizado na conta de "); // CPF, mas trocar para nome
+            }
         }
-        else {
-            setSaldoConta(getSaldoConta() + deposito); //this.setSaldoConta(getSaldoConta() + deposito);
-            System.out.println("Deposito realizado na conta de " ); // CPF, mas trocar para nome
+        catch (Exception exception) {
+            throw new Exception("Excessao atingida");
         }
     }
+
+    // NECESSARIO COLOCAR TRY/CATCH
 
     public void sacar(float sacar) throws Exception {
 
@@ -83,27 +91,30 @@ public class Conta {
         // [ 2 ] - Saldo Total
         // [ 3 ] - Cancelar
 
-        if (this.isContaAberta() == false) {
-            System.err.println("Não foi encontrado nenhuma conta registrada.\nNecessário abrir uma nova conta!");
-            throw new Exception ("Não ha conta aberta, impossivel sacar");
+        try {
+            if (this.isContaAberta() == false) {
+                System.err.println("Não foi encontrado nenhuma conta registrada.\nNecessário abrir uma nova conta!");
+                throw new Exception("Não ha conta aberta, impossivel sacar");
 
-            // chama um menu menu perguntando se deseja criar conta nova
-            // system("pause")
-            // interface
-            // this.sacar();
+                // chama um menu menu perguntando se deseja criar conta nova
+                // system("pause")
+                // interface
+                // this.sacar();
+            } else {
+                if (this.getSaldoConta() < this.getSacar()) {
+                    System.out.println("Seu saldo atual é de " + this.getSaldoConta());
+                    System.err.println("\nImpossivel sacar valor maior que saldo atual.");
+
+                    throw new Exception("Saldo menor que saque");
+                } else {
+                    setSaldoConta(this.getSaldoConta() - sacar);
+                    System.out.println("Saque realizado com sucesso!");
+                    System.out.println("\nAtualmente seu saldo atual é: " + this.getSaldoConta());
+                }
+            }
         }
-        else {
-            if (this.getSaldoConta() < this.getSacar()) {
-                System.out.println("Seu saldo atual é de " + this.getSaldoConta());
-                System.err.println("\nImpossivel sacar valor maior que saldo atual.");
-
-                throw new Exception ("Saldo menor que saque");
-            }
-            else {
-                setSaldoConta(this.getSaldoConta() - sacar);
-                System.out.println("Saque realizado com sucesso!");
-                System.out.println("\nAtualmente seu saldo atual é: " + this.getSaldoConta());
-            }
+        catch (Exception exception){
+            throw new Exception ("Excessao atingida");
         }
     }
 
