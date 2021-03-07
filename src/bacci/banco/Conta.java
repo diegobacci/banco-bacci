@@ -20,19 +20,13 @@ public class Conta {
         this.setSaldoConta(0);
     }
 
-    public boolean ContaAberta() {
-        if (isContaAberta() == true) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
     public void abrirConta(int tipoConta) { // 1 = corrente e 2 = poupanca
         // devemos acrescentar valor bonus inicial de criacao de conta;
+        // Verificacao se a mesma pessoa ja nao tem uma conta criada.
+
         this.setTipoConta(tipoConta);
         this.setContaAberta(true);
+        System.out.println("Conta criada com sucesso!");
 
         if (tipoConta == 1) { // conta corrente
             this.setSaldoConta(getSaldoConta() + 50);
@@ -40,8 +34,6 @@ public class Conta {
         else if (tipoConta == 2) { // conta poupanca
             this.setSaldoConta(getSaldoConta() + 150);
         }
-
-        System.out.println("Conta criada com sucesso!");
     }
 
     public void fecharConta(float saldoConta) throws Exception {
@@ -79,7 +71,7 @@ public class Conta {
             throw new Exception ("Conta Inexistente");
         }
         else {
-            this.setSaldoConta(getSaldoConta() + deposito);
+            setSaldoConta(getSaldoConta() + deposito); //this.setSaldoConta(getSaldoConta() + deposito);
             System.out.println("Deposito realizado na conta de " ); // CPF, mas trocar para nome
         }
     }
@@ -150,7 +142,7 @@ public class Conta {
     }
 
     public void estadoAtualConta() {
-        System.out.println("---------------------------------\n");
+        System.out.println("---------------------------------");
         System.out.println("Conta: " + this.getNumeroConta());
         System.out.println("Dono: " + this.getDono());
         if (this.isContaAberta() == false) {
