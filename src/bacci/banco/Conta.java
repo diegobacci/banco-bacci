@@ -7,7 +7,7 @@ public class Conta {
      * */
 
     private int numeroConta;
-    private char nomeDonoConta;
+    private String dono;
     private float saldoConta;
     private int tipoConta; // 1 = corrente e 2 = poupanca
     private boolean contaAberta;
@@ -15,12 +15,12 @@ public class Conta {
     private float sacar;
     private float mensalidadeConta;
 
-    public Conta(boolean statusConta, float saldoConta) { // sempre que conta ser criada, tera esses valores de atributo
+    public Conta() { // sempre que conta ser criada, tera esses valores de atributo
         this.setContaAberta(false);
         this.setSaldoConta(0);
     }
 
-    public boolean isContaAberta() {
+    public boolean ContaAberta() {
         if (isContaAberta() == true) {
             return true;
         }
@@ -150,13 +150,21 @@ public class Conta {
     }
 
     public void estadoAtualConta() {
+        System.out.println("---------------------------------\n");
         System.out.println("Conta: " + this.getNumeroConta());
+        System.out.println("Dono: " + this.getDono());
         if (this.isContaAberta() == false) {
             System.out.println("Status: Fechada");
         }
         else {
             System.out.println("Status: Aberta");
-            System.out.printf("Saldo: " + this.getSaldoConta());
+            if (getTipoConta() == 1) {
+                System.out.println("Tipo: Conta Corrente");
+            }
+            else if (getTipoConta() == 2) {
+                System.out.println("Tipo: Conta Poupança");
+            }
+            System.out.println("Saldo: " + this.getSaldoConta());
         }
     }
 
@@ -168,6 +176,14 @@ public class Conta {
 
     public void setNumeroConta(int numeroConta) {
         this.numeroConta = numeroConta;
+    }
+
+    public String getDono() {
+        return dono;
+    }
+
+    public void setDono(String dono) {
+        this.dono = dono;
     }
 
     public float getSaldoConta() {
@@ -188,6 +204,10 @@ public class Conta {
 
     public void setTipoConta(int tipoConta) {
         this.tipoConta = tipoConta;
+    }
+
+    public boolean isContaAberta() {
+        return contaAberta;
     }
 
     /**

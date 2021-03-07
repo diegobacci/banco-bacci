@@ -2,12 +2,20 @@ package bacci.banco;
 
 public class InformacoesDono {
 
-    private char nome;
+    public char nome;
+    public char cpf;
     private char sexo;
     private int idade;
-    private char cpf;
     private char estadoCivil;
     private char statusDono;
+
+    public char getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(char cpf) {
+        this.cpf = cpf;
+    }
 
     public char getNome() {
         return nome;
@@ -15,10 +23,6 @@ public class InformacoesDono {
 
     public void setNome(char nome) {
         this.nome = nome;
-    }
-
-    private void alterarInformacao() {
-
     }
 
     private char nome() {
