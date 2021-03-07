@@ -10,8 +10,8 @@ public class Conta {
     private float saldoConta;
     private int tipoConta; // 1 = corrente e 2 = poupanca
     private boolean contaAberta;
-    private double deposito;
-    private double sacar;
+    private float deposito;
+    private float sacar;
     private float mensalidadeConta;
     private char statusConta;
 
@@ -67,7 +67,7 @@ public class Conta {
         }
     }
 
-    public double sacar() throws Exception {
+    public void sacar(float sacar) throws Exception {
 
         // Interface em que pergunta: Deseje a quantidade a ser sacada de sua conta:
         // [ 1 ] - Personalizado
@@ -84,20 +84,26 @@ public class Conta {
             // this.sacar();
         }
         else {
-            if (this.getSaldoConta() >= this.getSacar()) {
-                // pode acontecer saque
+            if (this.getSaldoConta() < this.getSacar()) {
+                System.out.println("Seu saldo atual é de " + this.getSaldoConta());
+                System.err.println("\nImpossivel sacar valor maior que seu saldo...");
+
+                throw new Exception ("Saldo menor que saque");
             }
             else {
-                // nao pode acontecer saque
+                setSaldoConta(this.getSaldoConta() - sacar);
+                System.out.println("Saque realizado com sucesso!");
+                System.out.println("\nAtualmente seu saldo atual é: " + this.getSaldoConta());
             }
         }
-
-        return this.getSacar();
     }
 
-    public void pagarMensalidadeConta() {
-        if (contaAberta == true) {
-            //this.setSaldoConta(); // passar o valor da mensalidade aqui
+    public void pagarMensalidadeConta() throws Exception {
+        if (this.isContaAberta() == false) {
+            throw new Exception ("Conta Inexistente");
+        }
+        else {
+            if (this.getSaldoConta() <= this.//getMensalidadeConta)
         }
     }
 
@@ -155,36 +161,22 @@ public class Conta {
     /**
      * @param deposito the deposito to set
      */
-    public void setDeposito(double deposito) {
+    public void setDeposito(float deposito) {
         this.deposito = deposito;
     }
 
     /**
      * @return the sacar
      */
-    public double getSacar() {
+    public float getSacar() {
         return this.sacar;
     }
 
     /**
      * @param sacar the sacar to set
      */
-    public void setSacar(double sacar) {
+    public void setSacar(float sacar) {
         this.sacar = sacar;
-    }
-
-    /**
-     * @return the mensalidadeConta
-     */
-    public double getMensalidadeConta() {
-        return this.mensalidadeConta;
-    }
-
-    /**
-     * @param mensalidadeConta the mensalidadeConta to set
-     */
-    public void setMensalidadeConta(float mensalidadeConta) {
-        this.mensalidadeConta -= mensalidadeConta;
     }
 
     /**
