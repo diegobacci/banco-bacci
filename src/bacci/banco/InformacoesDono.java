@@ -9,6 +9,14 @@ public class InformacoesDono {
     private char estadoCivil;
     private char statusDono;
 
+    public char getNome() {
+        return nome;
+    }
+
+    public void setNome(char nome) {
+        this.nome = nome;
+    }
+
     private void alterarInformacao() {
 
     }
