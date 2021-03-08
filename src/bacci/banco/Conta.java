@@ -245,4 +245,12 @@ public class Conta {
     public void setSacar(float sacar) {
         this.sacar = sacar;
     }
+
+    public float getMensalidadeConta() {
+        return mensalidadeConta;
+    }
+
+    public void setMensalidadeConta(float mensalidadeConta) {
+        this.mensalidadeConta = mensalidadeConta;
+    }
 }
