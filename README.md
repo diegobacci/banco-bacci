@@ -1,4 +1,4 @@
 # banco-bacci
 
-O objetivo desse pequenos projetos é praticar os conceitos básicos de programação orientada a objetos, em Java.
+O objetivo desse pequeno projeto é praticar os conceitos básicos de programação orientada a objetos, em Java.
 
