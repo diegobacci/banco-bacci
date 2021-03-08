@@ -9,6 +9,14 @@ public class InformacoesDono {
     private char estadoCivil;
     private char statusDono;
 
+    public char getNome() {
+        return nome;
+    }
+
+    public void setNome(char nome) {
+        this.nome = nome;
+    }
+
     public char getCpf() {
         return cpf;
     }
@@ -17,12 +25,36 @@ public class InformacoesDono {
         this.cpf = cpf;
     }
 
-    public char getNome() {
-        return nome;
+    public char getSexo() {
+        return sexo;
     }
 
-    public void setNome(char nome) {
-        this.nome = nome;
+    public void setSexo(char sexo) {
+        this.sexo = sexo;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+
+    public char getEstadoCivil() {
+        return estadoCivil;
+    }
+
+    public void setEstadoCivil(char estadoCivil) {
+        this.estadoCivil = estadoCivil;
+    }
+
+    public char getStatusDono() {
+        return statusDono;
+    }
+
+    public void setStatusDono(char statusDono) {
+        this.statusDono = statusDono;
     }
 
     private char nome() {

@@ -82,8 +82,6 @@ public class Conta {
         }
     }
 
-    // NECESSARIO COLOCAR TRY/CATCH
-
     public void sacar(float sacar) throws Exception {
 
         // Interface em que pergunta: Deseje a quantidade a ser sacada de sua conta:
